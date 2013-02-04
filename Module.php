@@ -40,7 +40,7 @@ class Module
             ),
             'invokables' => array(
                 'SclZfSequenceGenerator\Entity\SequenceNumber' => 'SclZfSequenceGenerator\Entity\SequenceNumber',
-                'SclZfSequenceGenerator\SequenceGenerator'     => 'SclZfSequenceGenerator\SequenceGenerator',
+                'SclZfSequenceGenerator\SequenceGenerator'     => 'SclZfSequenceGenerator\DoctrineSequenceGenerator',
             ),
         );
     }

@@ -17,7 +17,9 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  *
  * @author Tom Oram
  */
-class SequenceGenerator implements ServiceLocatorAwareInterface
+class DoctrineSequenceGenerator implements
+    SequenceGeneratorInterface, 
+    ServiceLocatorAwareInterface
 {
     /**
      * The entity manager used to access the database.
@@ -113,14 +115,7 @@ class SequenceGenerator implements ServiceLocatorAwareInterface
     }
 
     /**
-     * Gets the next number in the sequence by name.
-     *
-     * @todo The transaction locks for reads and writes.
-     *
-     * @param string $name
-     * @param int    $initialValue
-     *
-     * @return int
+     * {@inheritDoc}
      */
     public function get($name, $initialValue = 1)
     {
