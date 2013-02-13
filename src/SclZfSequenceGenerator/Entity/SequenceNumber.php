@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author Tom Oram
  * @ORM\Entity
- * @ORM\Table(name="sequence_generator") 
+ * @ORM\Table(name="sequence_generator")
  */
 class SequenceNumber
 {

@@ -13,12 +13,12 @@ use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Returns sequential numbers. 
+ * Returns sequential numbers.
  *
  * @author Tom Oram
  */
 class DoctrineSequenceGenerator implements
-    SequenceGeneratorInterface, 
+    SequenceGeneratorInterface,
     ServiceLocatorAwareInterface
 {
     /**
@@ -29,7 +29,7 @@ class DoctrineSequenceGenerator implements
     private $entityManager;
 
     /**
-     * The service locator 
+     * The service locator
      *
      * @var ServiceLocatorInterface
      */
@@ -44,7 +44,7 @@ class DoctrineSequenceGenerator implements
     }
 
     /**
-     * 
+     *
      * @return ServiceLocatorInterface
      */
     public function getServiceLocator()
