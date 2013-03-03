@@ -38,9 +38,17 @@ class Module
             'shared' => array(
                 'SclZfSequenceGenerator\Entity\SequenceNumber' => false,
             ),
+            'aliases' => array(
+                'SclZfSequenceGenerator\SequenceGenerator' => 'SclZfSequenceGenerator\DoctrineSequenceGenerator',
+            ),
             'invokables' => array(
                 'SclZfSequenceGenerator\Entity\SequenceNumber' => 'SclZfSequenceGenerator\Entity\SequenceNumber',
-                'SclZfSequenceGenerator\SequenceGenerator'     => 'SclZfSequenceGenerator\DoctrineSequenceGenerator',
+            ),
+            'factories' => array(
+                'SclZfSequenceGenerator\DoctrineSequenceGenerator' => function ($sm) {
+                    $entityManager = $sm->get('doctrine.entitymanager.orm_default');
+                    return new DoctrineSequenceGenerator($entityManager);
+                }
             ),
         );
     }

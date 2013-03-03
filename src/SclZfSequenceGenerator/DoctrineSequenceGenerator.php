@@ -36,6 +36,16 @@ class DoctrineSequenceGenerator implements
     private $serviceLocator;
 
     /**
+     * Inject the doctrine entity manager.
+     *
+     * @param EntityManager $entityManager
+     */
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    /**
      * @param ServiceLocatorInterface $serviceLocator
      */
     public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
@@ -50,20 +60,6 @@ class DoctrineSequenceGenerator implements
     public function getServiceLocator()
     {
         return $this->serviceLocator;
-    }
-
-    /**
-     * Return the Doctrine EntityManager.
-     *
-     * @return EntityManager
-     */
-    protected function getEntityManager()
-    {
-        if (null === $this->entityManager) {
-            $sl = $this->getServiceLocator();
-            $this->entityManager = $sl->get('doctrine.entitymanager.orm_default');
-        }
-        return $this->entityManager;
     }
 
     /**
@@ -98,7 +94,7 @@ class DoctrineSequenceGenerator implements
              . 'FROM SclZfSequenceGenerator\Entity\SequenceNumber sn '
              . 'WHERE sn.name = ?1';
 
-        $query = $this->getEntityManager()->createQuery($dql);
+        $query = $this->entityManager->createQuery($dql);
         $query->setParameter(1, $name);
 
         $result = $query->getResult();
@@ -119,7 +115,7 @@ class DoctrineSequenceGenerator implements
      */
     public function get($name, $initialValue = 1)
     {
-        $entityManager = $this->getEntityManager();
+        $entityManager = $this->entityManager;
 
         $entityManager->getConnection()->beginTransaction();
 
