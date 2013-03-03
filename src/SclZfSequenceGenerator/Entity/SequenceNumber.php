@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Represents a number in the sequence table.
  *
- * @author Tom Oram
  * @ORM\Entity
  * @ORM\Table(name="sequence_generator")
+ * @author Tom Oram
  */
 class SequenceNumber
 {
