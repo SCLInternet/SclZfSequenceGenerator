@@ -2,21 +2,21 @@
 
 namespace SclZfSequenceGenerator;
 
-return array(
-    'doctrine' => array(
-        'driver' => array(
-            __NAMESPACE__ . '_driver' => array(
+return [
+    'doctrine' => [
+        'driver' => [
+            __NAMESPACE__ . '_driver' => [
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(
+                'paths' => [
                     __DIR__ . '/../src/'. __NAMESPACE__ . '/Entity/',
-                ),
-            ),
-            'orm_default' => array(
-                'drivers' => array(
+                ],
+            ],
+            'orm_default' => [
+                'drivers' => [
                     __NAMESPACE__ => __NAMESPACE__ . '_driver',
-                ),
-            ),
-        ),
-    ),
-);
+                ],
+            ],
+        ],
+    ],
+];

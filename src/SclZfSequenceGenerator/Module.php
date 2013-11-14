@@ -2,23 +2,30 @@
 
 namespace SclZfSequenceGenerator;
 
-class Module
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
+
+class Module implements
+    AutoloaderProviderInterface,
+    ConfigProviderInterface,
+    ServiceProviderInterface
 {
     /**
      * @return array
      */
     public function getAutoloaderConfig()
     {
-        return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
+        return [
+            'Zend\Loader\ClassMapAutoloader' => [
                 __DIR__ . '/../../autoload_classmap.php',
-            ),
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
+            ],
+            'Zend\Loader\StandardAutoloader' => [
+                'namespaces' => [
                     __NAMESPACE__ => __DIR__,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -34,22 +41,22 @@ class Module
      */
     public function getServiceConfig()
     {
-        return array(
-            'shared' => array(
+        return [
+            'shared' => [
                 'SclZfSequenceGenerator\Entity\SequenceNumber' => false,
-            ),
-            'aliases' => array(
+            ],
+            'aliases' => [
                 'SclZfSequenceGenerator\SequenceGenerator' => 'SclZfSequenceGenerator\DoctrineSequenceGenerator',
-            ),
-            'invokables' => array(
+            ],
+            'invokables' => [
                 'SclZfSequenceGenerator\Entity\SequenceNumber' => 'SclZfSequenceGenerator\Entity\SequenceNumber',
-            ),
-            'factories' => array(
+            ],
+            'factories' => [
                 'SclZfSequenceGenerator\DoctrineSequenceGenerator' => function ($sm) {
                     $entityManager = $sm->get('doctrine.entitymanager.orm_default');
                     return new DoctrineSequenceGenerator($entityManager);
                 }
-            ),
-        );
+            ],
+        ];
     }
 }
